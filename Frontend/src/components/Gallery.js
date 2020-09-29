@@ -5,7 +5,7 @@ function Gallery() {
   const [arts, setArts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/gallery')
+    fetch('/gallery')
       .then((x) => x.json())
       .then((data) => setArts(data));
   }, []);

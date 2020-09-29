@@ -6,7 +6,7 @@ function AddImage({ canvas, context }) {
     try {
       const url = canvas.current.toDataURL('image/jpeg', 0.4);
       const body = { img: url, author: author };
-      await fetch(`http://localhost:8080/gallery/`, {
+      await fetch(`/gallery`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
