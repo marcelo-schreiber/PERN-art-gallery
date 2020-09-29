@@ -20,15 +20,23 @@ app.get('/gallery', async (req, res) => {
   }
 });
 
-app.post('/gallery', async (req, res) => {
+app.post('/gallery', async (req, res, next) => {
   try {
-    const { img, author } = req.body;
-    const sendData = await pool.query(
-      'INSERT INTO arts (img, author) VALUES ($1, $2) RETURNING *',
-      [img, author]
-    );
+    if (req.headers.origin !== 'http://t1gart.herokuapp.com/') {
+      res.json([
+        {
+          invalid: true,
+        },
+      ]);
+    } else {
+      const { img, author } = req.body;
+      const sendData = await pool.query(
+        'INSERT INTO arts (img, author) VALUES ($1, $2) RETURNING *',
+        [img, author]
+      );
 
-    res.json(sendData.rows[0]);
+      res.json(sendData.rows[0]);
+    }
   } catch (error) {
     console.error(error.message);
   }
