@@ -1,4 +1,4 @@
-CREATE DATABASE gallery;
+-- CREATE DATABASE gallery;
 
 CREATE TABLE arts
 (
