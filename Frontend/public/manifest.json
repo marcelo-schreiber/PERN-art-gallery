@@ -1,5 +1,5 @@
 {
-  "short_name": "React App",
+  "short_name": "T1GART",
   "name": "Create React App Sample",
   "icons": [
     {
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#8783d1",
+  "background_color": "#f1efef"
 }

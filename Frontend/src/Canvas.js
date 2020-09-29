@@ -56,7 +56,7 @@ function App() {
     <>
       <div className="main">
         <h1>
-          ART GALLERY <i className="fas fa-paint-brush"></i>
+          T1GART <i className="fas fa-paint-brush"></i>
         </h1>
         <div className="paint">
           <canvas
