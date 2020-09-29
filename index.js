@@ -1,11 +1,11 @@
 const express = require('express');
 const pool = require('./db.js');
-const cors = require('cors');
+// const cors = require('cors');
 const app = express();
 const path = require('path');
 const port = process.env.PORT || 8080;
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
   // serve static content
