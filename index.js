@@ -1,11 +1,11 @@
 const express = require('express');
 const pool = require('./db.js');
-// const cors = require('cors');
+const cors = require('cors');
 const app = express();
 const path = require('path');
 const port = process.env.PORT || 8080;
 
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
   // serve static content
@@ -20,23 +20,15 @@ app.get('/gallery', async (req, res) => {
   }
 });
 
-app.post('/gallery', async (req, res, next) => {
+app.post('/gallery', async (req, res) => {
   try {
-    if (req.headers.origin !== 'http://t1gart.herokuapp.com/') {
-      res.json([
-        {
-          invalid: true,
-        },
-      ]);
-    } else {
-      const { img, author } = req.body;
-      const sendData = await pool.query(
-        'INSERT INTO arts (img, author) VALUES ($1, $2) RETURNING *',
-        [img, author]
-      );
+    const { img, author } = req.body;
+    const sendData = await pool.query(
+      'INSERT INTO arts (img, author) VALUES ($1, $2) RETURNING *',
+      [img, author]
+    );
 
-      res.json(sendData.rows[0]);
-    }
+    res.json(sendData.rows[0]);
   } catch (error) {
     console.error(error.message);
   }
