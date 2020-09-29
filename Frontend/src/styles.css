@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Epilogue', sans-serif;
+}
+
+/* 8783d1-aa9aba-bfa4a4-d1abad-e3b9bc */
+
+html,
+body {
+  overflow-x: hidden;
+  background-color: #f1efef;
+}
+
+h1 {
+  letter-spacing: 9px;
+  text-shadow: 1px 1px 1px black;
+  color: #8783d1;
+  font-size: 2.5rem;
+  margin: 1rem 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+form button {
+  font-weight: 700;
+  border: none;
+  outline: none;
+  background-color: #8783d1;
+  padding: 0.4rem;
+  border-radius: 3px;
+  color: white;
+  transition: 0.35s;
+}
+
+form button:hover {
+  cursor: pointer;
+  background-color: #aa9aba;
+}
+
+#canv {
+  margin-left: 0.5rem;
+  cursor: crosshair;
+}
+
+.paint {
+  display: flex;
+  align-items: flex-start;
+}
+
+.colorpick {
+  margin: 0.4rem;
+  display: flex;
+  align-items: center;
+}
+
+input[type='color'] {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+form {
+  display: flex;
+  align-items: center;
+}
+
+input[type='text'] {
+  background-color: #f1efef;
+  margin: 1rem;
+  position: relative;
+  width: 250px;
+  height: 44px;
+  line-height: 44px;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid #a5a1a1;
+  box-shadow: none;
+  color: #111;
+  transition: 0.35s ease-in;
+}
+
+input[type='text']:focus {
+  border-color: #e3b9bc;
+}
+
+input[type='text']:focus ~ label {
+  font-size: 13px;
+  transform: translateY(-1.3rem);
+  color: #e3b9bc;
+}
+
+label {
+  margin: 1rem;
+  pointer-events: none;
+  position: absolute;
+  top: 22.5rem;
+  left: 0;
+  width: 100%;
+  color: #b9b4b4;
+  transition: all 0.4s;
+}
+
+#root > div:nth-child(2) {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gallery-item {
+  margin: 0.2rem;
+  color: white;
+  background-color: #8783d1;
+  display: flex;
+  align-items: center;
+}
+
+.gallery-item img {
+  margin: 0.5rem 1rem;
+  border: 1px solid black;
+}
+
+small {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 1510px) {
+  #root > div:nth-child(2) {
+    gap: 15px;
+    grid-template-columns: 550px 550px;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  #root > div:nth-child(2) {
+    gap: 25px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #root > div:nth-child(2) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  :root {
+    font-size: 70%;
+  }
+  input[type='text'] {
+    width: 60vw;
+  }
+
+  .gallery-item img {
+    width: 145px;
+  }
+}
