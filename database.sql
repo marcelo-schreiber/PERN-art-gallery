@@ -1,0 +1,8 @@
+CREATE DATABASE gallery;
+
+CREATE TABLE arts
+(
+    id BIGSERIAL PRIMARY KEY NOT NULL,
+    img TEXT,
+    author VARCHAR(14)
+);
