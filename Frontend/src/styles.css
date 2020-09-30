@@ -38,6 +38,7 @@ form button:hover {
 }
 
 #canv {
+  touch-action: none;
   margin-left: 0.5rem;
   cursor: crosshair;
 }
