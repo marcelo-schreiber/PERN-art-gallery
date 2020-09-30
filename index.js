@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 app.get('/gallery', async (req, res) => {
   try {
-    const data = await pool.query('SELECT * FROM arts ORDER BY id DESC LIMIT 25');
+    const data = await pool.query('SELECT * FROM arts ORDER BY id DESC LIMIT 40');
     res.json(data.rows);
   } catch (error) {
     console.error(error.message);

@@ -33,6 +33,18 @@ function App() {
     setIsDrawing(true);
   };
 
+  // const startDrawingMobile = (ev) => {
+  //   const canvas = canvasRef.current;
+  //   var rect = canvas.getBoundingClientRect();
+  //   const evX = ev.targetTouches[0].pageX - rect.left;
+  //   const evY = ev.targetTouches[0].pageX - rect.top;
+  //   console.log(evX, evY);
+  //   contextRef.current.strokeStyle = color;
+  //   contextRef.current.beginPath();
+  //   contextRef.current.moveTo(evX, evY);
+  //   setIsDrawing(true);
+  // };
+
   const endDrawing = () => {
     setIsDrawing(false);
     // contextRef.current.closePath();
@@ -42,7 +54,7 @@ function App() {
     if (!isDrawing) {
       return;
     }
-
+    console.log(nativeEvent);
     const { offsetX, offsetY } = nativeEvent;
 
     if (!(offsetX < 247 && offsetX > 5 && offsetY > 4 && offsetY < 247)) {
@@ -51,6 +63,19 @@ function App() {
     contextRef.current.lineTo(offsetX, offsetY);
     contextRef.current.stroke();
   };
+
+  // const drawMobile = (ev) => {
+  //   const canvas = canvasRef.current;
+  //   if (!isDrawing) {
+  //     return;
+  //   }
+  //   var rect = canvas.getBoundingClientRect();
+  //   const evX = ev.targetTouches[0].pageX - rect.left;
+  //   const evY = ev.targetTouches[0].pageX - rect.top;
+  //   console.log(evX, evY);
+  //   contextRef.current.lineTo(evX, evY);
+  //   contextRef.current.stroke();
+  // };
 
   return (
     <>
@@ -63,8 +88,10 @@ function App() {
             id="canv"
             style={{ border: '1px solid black' }}
             onMouseDown={startDrawing}
-            onMouseUp={endDrawing}
             onMouseMove={draw}
+            onMouseUp={endDrawing}
+            // onTouchStart={startDrawingMobile}
+            // onTouchMove={drawMobile}
             ref={canvasRef}
           />
           <Colors color={color} setColor={setColor} />
