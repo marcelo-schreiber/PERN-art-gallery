@@ -17,7 +17,7 @@ function App() {
     canvas.width = 250;
     canvas.height = 250;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2D');
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.lineCap = 'round';
