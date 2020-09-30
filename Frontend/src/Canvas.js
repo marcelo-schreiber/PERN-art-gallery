@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import AddImage from './components/AddImage';
 import Colors from './components/Colors';
 import Gallery from './components/Gallery';
+import { getTouchPos } from './utils/GetPosTouch';
 import './styles.css';
 
 function App() {
@@ -33,49 +34,39 @@ function App() {
     setIsDrawing(true);
   };
 
-  // const startDrawingMobile = (ev) => {
-  //   const canvas = canvasRef.current;
-  //   var rect = canvas.getBoundingClientRect();
-  //   const evX = ev.targetTouches[0].pageX - rect.left;
-  //   const evY = ev.targetTouches[0].pageX - rect.top;
-  //   console.log(evX, evY);
-  //   contextRef.current.strokeStyle = color;
-  //   contextRef.current.beginPath();
-  //   contextRef.current.moveTo(evX, evY);
-  //   setIsDrawing(true);
-  // };
-
   const endDrawing = () => {
     setIsDrawing(false);
-    // contextRef.current.closePath();
+    contextRef.current.closePath();
   };
 
   const draw = ({ nativeEvent }) => {
     if (!isDrawing) {
       return;
     }
-    // console.log(nativeEvent);
     const { offsetX, offsetY } = nativeEvent;
 
-    if (!(offsetX < 247 && offsetX > 5 && offsetY > 4 && offsetY < 247)) {
-      endDrawing();
-    }
     contextRef.current.lineTo(offsetX, offsetY);
     contextRef.current.stroke();
   };
 
-  // const drawMobile = (ev) => {
-  //   const canvas = canvasRef.current;
-  //   if (!isDrawing) {
-  //     return;
-  //   }
-  //   var rect = canvas.getBoundingClientRect();
-  //   const evX = ev.targetTouches[0].pageX - rect.left;
-  //   const evY = ev.targetTouches[0].pageX - rect.top;
-  //   console.log(evX, evY);
-  //   contextRef.current.lineTo(evX, evY);
-  //   contextRef.current.stroke();
-  // };
+  const startDrawingMobile = (e) => {
+    const { posx, posy } = getTouchPos(canvasRef.current, e);
+    contextRef.current.strokeStyle = color;
+    contextRef.current.beginPath();
+    contextRef.current.moveTo(posx, posy);
+    setIsDrawing(true);
+  };
+
+  const drawMobile = (e) => {
+    if (!isDrawing) {
+      return;
+    }
+
+    const { posx, posy } = getTouchPos(canvasRef.current, e);
+
+    contextRef.current.lineTo(posx, posy);
+    contextRef.current.stroke();
+  };
 
   return (
     <>
@@ -90,8 +81,9 @@ function App() {
             onMouseDown={startDrawing}
             onMouseMove={draw}
             onMouseUp={endDrawing}
-            // onTouchStart={startDrawingMobile}
-            // onTouchMove={drawMobile}
+            onTouchStart={startDrawingMobile}
+            onTouchMove={drawMobile}
+            onTouchEnd={endDrawing}
             ref={canvasRef}
           />
           <Colors color={color} setColor={setColor} />
