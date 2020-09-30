@@ -54,7 +54,7 @@ function App() {
     if (!isDrawing) {
       return;
     }
-    console.log(nativeEvent);
+    // console.log(nativeEvent);
     const { offsetX, offsetY } = nativeEvent;
 
     if (!(offsetX < 247 && offsetX > 5 && offsetY > 4 && offsetY < 247)) {
