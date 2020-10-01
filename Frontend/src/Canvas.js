@@ -9,7 +9,6 @@ import UndoButton from './components/UndoButton';
 import Title from './components/Title';
 
 // utils
-import { getTouchPos } from './utils/getPosTouch';
 import { undo } from './utils/handleUndo';
 
 // style
@@ -41,6 +40,14 @@ function App() {
     ctx.lineWidth = 4;
     contextRef.current = ctx;
   }, []);
+
+  const getTouchPos = (canvasDom, touchEvent) => {
+    var rect = canvasDom.getBoundingClientRect();
+    return {
+      posx: touchEvent.touches[0].clientX - rect.left,
+      posy: touchEvent.touches[0].clientY - rect.top,
+    };
+  };
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
