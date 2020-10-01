@@ -1,16 +1,32 @@
 import React, { useEffect, useState, useRef } from 'react';
+
+// components
 import AddImage from './components/AddImage';
 import Colors from './components/Colors';
 import Gallery from './components/Gallery';
-import { getTouchPos } from './utils/GetPosTouch';
+import Canvas from './components/Canvas';
+import UndoButton from './components/UndoButton';
+import Title from './components/Title';
+
+// utils
+import { getTouchPos } from './utils/getPosTouch';
+import { undo } from './utils/handleUndo';
+
+// style
 import './styles.css';
 
 function App() {
+  //refs
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
+
+  //states
+  const [color, setColor] = useState('#000000');
   const [isDrawing, setIsDrawing] = useState(false);
 
-  const [color, setColor] = useState('#000000');
+  // ctrl + z states
+  const [path, setPath] = useState([]);
+  const [lastPath, setLastPath] = useState([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -28,14 +44,17 @@ function App() {
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
+
+    setLastPath([{ x: offsetX, y: offsetY, color: color }]);
     contextRef.current.strokeStyle = color;
     contextRef.current.beginPath();
     contextRef.current.moveTo(offsetX, offsetY);
     setIsDrawing(true);
   };
 
-  const endDrawing = () => {
+  const endDrawingBoth = () => {
     setIsDrawing(false);
+    setPath([...path, false]);
     contextRef.current.closePath();
   };
 
@@ -44,49 +63,65 @@ function App() {
       return;
     }
     const { offsetX, offsetY } = nativeEvent;
-
+    setLastPath([...lastPath, { x: offsetX, y: offsetY, color: color }]);
+    setPath([...path, { x: offsetX, y: offsetY, color: color }]);
     contextRef.current.lineTo(offsetX, offsetY);
     contextRef.current.stroke();
   };
 
   const startDrawingMobile = (e) => {
+    const ctx = contextRef.current;
     const { posx, posy } = getTouchPos(canvasRef.current, e);
-    contextRef.current.strokeStyle = color;
-    contextRef.current.beginPath();
-    contextRef.current.moveTo(posx, posy);
+    ctx.strokeStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(posx, posy);
     setIsDrawing(true);
+    setLastPath([{ x: posx, y: posy, color: color }]);
   };
 
   const drawMobile = (e) => {
     if (!isDrawing) {
       return;
     }
-
+    const ctx = contextRef.current;
     const { posx, posy } = getTouchPos(canvasRef.current, e);
 
-    contextRef.current.lineTo(posx, posy);
-    contextRef.current.stroke();
+    ctx.lineTo(posx, posy);
+    ctx.stroke();
+
+    setLastPath([...lastPath, { x: posx, y: posy, color: color }]);
+    setPath([...path, { x: posx, y: posy, color: color }]);
   };
 
   return (
     <>
       <div className="main">
-        <h1>
-          T1GART <i className="fas fa-paint-brush"></i>
-        </h1>
+        <Title />
         <div className="paint">
-          <canvas
-            id="canv"
-            style={{ border: '1px solid black' }}
-            onMouseDown={startDrawing}
-            onMouseMove={draw}
-            onMouseUp={endDrawing}
-            onTouchStart={startDrawingMobile}
-            onTouchMove={drawMobile}
-            onTouchEnd={endDrawing}
-            ref={canvasRef}
+          <Canvas
+            startDrawing={startDrawing}
+            draw={draw}
+            endDrawing={endDrawingBoth}
+            startDrawingMobile={startDrawingMobile}
+            drawMobile={drawMobile}
+            canvasRef={canvasRef}
           />
-          <Colors color={color} setColor={setColor} />
+          <div>
+            <Colors color={color} setColor={setColor} />
+            <UndoButton
+              action={() =>
+                undo(
+                  path,
+                  setPath,
+                  lastPath,
+                  setLastPath,
+                  canvasRef.current,
+                  contextRef.current
+                )
+              }
+              enabling={lastPath.length}
+            />
+          </div>
         </div>
         <AddImage canvas={canvasRef} context={contextRef} color={color} />
       </div>

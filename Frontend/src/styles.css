@@ -5,8 +5,16 @@
   font-family: 'Epilogue', sans-serif;
 }
 
-/* 8783d1-aa9aba-bfa4a4-d1abad-e3b9bc */
+/* font awesome */
+.fa-user {
+  margin-right: 0.35rem;
+}
+.fa-palette {
+  margin-right: 0.35rem;
+}
+/* end font awesome*/
 
+/* color pallete: 8783d1-aa9aba-bfa4a4-d1abad-e3b9bc */
 html,
 body {
   overflow-x: hidden;
@@ -21,6 +29,7 @@ h1 {
   margin: 1rem 0.5rem;
   font-family: 'Poppins', sans-serif;
 }
+
 form button {
   font-weight: 700;
   border: none;
@@ -59,6 +68,10 @@ input[type='color'] {
   outline: none;
   border: none;
   background: transparent;
+}
+
+.rewind {
+  margin-left: 0.35rem;
 }
 
 form {
@@ -108,9 +121,7 @@ input[type='text']:focus {
   margin: 0.5rem 1rem;
   border: 1px solid black;
 }
-.fa-user {
-  margin-right: 0.35rem;
-}
+
 small {
   line-height: 1.7;
   font-size: 1.2rem;
