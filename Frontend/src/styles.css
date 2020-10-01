@@ -29,6 +29,11 @@ h1 {
   margin: 1rem 0.5rem;
   font-family: 'Poppins', sans-serif;
 }
+.logo {
+  margin: 0.5rem;
+  width: 7.5rem;
+  margin-left: 4.75rem;
+}
 
 form button {
   font-weight: 700;
@@ -141,13 +146,12 @@ small {
 }
 
 @media screen and (max-width: 435px) {
-  :root {
-    font-size: 87%;
-  }
   input[type='text']:focus {
     width: 160px;
   }
-
+  small {
+    font-size: 85%;
+  }
   .gallery-item img {
     width: 145px;
   }
