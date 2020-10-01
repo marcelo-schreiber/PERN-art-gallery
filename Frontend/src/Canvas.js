@@ -71,7 +71,7 @@ function App() {
     }
 
     if (!(offsetX < 247 && offsetX > 5 && offsetY > 4 && offsetY < 247)) {
-      endDrawing();
+      endDrawingBoth();
     }
     const { offsetX, offsetY } = nativeEvent;
     setLastPath([...lastPath, { x: offsetX, y: offsetY, color: color }]);
