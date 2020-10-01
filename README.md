@@ -11,11 +11,11 @@ And a rest API in http://t1gart.herokuapp.com/gallery
 - Create a database in your postgreSQL terminal and
   a .env file in the root directory with the content
 
-PG_USER=your_user
-PG_PASSWORD=password
-PG_HOST=host
-PG_PORT=port
-PG_DATABASE=name_of_database
+<p>PG_USER=your_user</p>
+<p>PG_PASSWORD=password</p>
+<p>PG_HOST=host</p>
+<p>PG_PORT=port</p>
+<p>PG_DATABASE=name_of_database</p>
 
 - Install all dependencies using:
 
