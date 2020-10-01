@@ -22,9 +22,12 @@ app.get('/gallery', async (req, res) => {
 
 app.post('/gallery', async (req, res) => {
   if (process.env.NODE_ENV === 'production') {
+    var origin = req.get('origin');
     try {
-      let origin = req.get('origin');
-      if (origin === 'http://t1gart.herokuapp.com') {
+      if (
+        origin === 'http://t1gart.herokuapp.com' ||
+        origin === 'http://t1gart.herokuapp.com/?'
+      ) {
         const { img, author } = req.body;
         const sendData = await pool.query(
           'INSERT INTO arts (img, author) VALUES ($1, $2) RETURNING *',
@@ -32,8 +35,6 @@ app.post('/gallery', async (req, res) => {
         );
 
         res.json(sendData.rows[0]);
-      } else {
-        res.status(401);
       }
     } catch (error) {
       console.error(error.message);
