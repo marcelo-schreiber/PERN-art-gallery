@@ -36,7 +36,7 @@ app.post('/gallery', async (req, res) => {
 
         res.json(sendData.rows[0]);
       } else {
-        res.status(401);
+        res.status(401).send('no auth');
       }
     } catch (error) {
       console.error(error.message);
