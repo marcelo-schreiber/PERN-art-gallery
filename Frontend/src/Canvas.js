@@ -69,11 +69,10 @@ function App() {
     if (!isDrawing) {
       return;
     }
-
+    const { offsetX, offsetY } = nativeEvent;
     if (!(offsetX < 247 && offsetX > 5 && offsetY > 4 && offsetY < 247)) {
       endDrawingBoth();
     }
-    const { offsetX, offsetY } = nativeEvent;
     setLastPath([...lastPath, { x: offsetX, y: offsetY, color: color }]);
     setPath([...path, { x: offsetX, y: offsetY, color: color }]);
     contextRef.current.lineTo(offsetX, offsetY);
