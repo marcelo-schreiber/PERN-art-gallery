@@ -32,6 +32,8 @@ app.post('/gallery', async (req, res) => {
         );
 
         res.json(sendData.rows[0]);
+      } else {
+        res.status(401);
       }
     } catch (error) {
       console.error(error.message);
