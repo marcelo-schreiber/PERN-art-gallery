@@ -87,7 +87,6 @@ function App() {
       offsetX < 6 ||
       offsetY < 6
     ) {
-      console.log(offsetX);
       setIsDrawing(false);
       // get paths
       setPath([...path, false]);
