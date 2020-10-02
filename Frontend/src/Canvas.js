@@ -12,6 +12,8 @@ import './static/styles.css';
 
 // utils
 import { undo } from './utils/handleUndo';
+import IncreaseBrush from './components/IncreaseBrush';
+import DecreaseBrush from './components/DecreaseBrush';
 
 function App() {
   //refs
@@ -158,13 +160,9 @@ function App() {
               }
               enabling={lastPath.length}
             />
-            <p>Brush size: {Math.round(brushSize / 5)}</p>
-            <button onClick={() => brushSize < 15 && setBrushSize(brushSize + 5)}>
-              +
-            </button>
-            <button onClick={() => brushSize > 5 && setBrushSize(brushSize - 5)}>
-              -
-            </button>
+            <p>Brush size: {Math.round(brushSize / 5)} (1-3)</p>
+            <IncreaseBrush brushSize={brushSize} setBrushSize={setBrushSize} />
+            <DecreaseBrush brushSize={brushSize} setBrushSize={setBrushSize} />
           </div>
         </div>
         <AddImage canvas={canvasRef} color={color} context={contextRef} />
