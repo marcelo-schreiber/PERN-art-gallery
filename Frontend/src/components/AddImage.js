@@ -26,8 +26,8 @@ function AddImage({ canvas, context }) {
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
         minLength="3"
-        maxLength="12"
-        placeholder="Your name"
+        maxLength="10"
+        placeholder="Author"
         required
       />
       <button type="submit" value="Submit">

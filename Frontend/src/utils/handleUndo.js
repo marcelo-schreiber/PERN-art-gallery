@@ -4,7 +4,6 @@ export const undo = (path, setPath, lastPath, setLastPath, canvas, ctx) => {
   }
   const diff = path.length - lastPath.length - 1;
   const allPointsExceptLast = path.slice(0, diff);
-  ctx.lineWidth = 4.4;
   ctx.fillStyle = 'white';
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -19,7 +18,7 @@ export const undo = (path, setPath, lastPath, setLastPath, canvas, ctx) => {
     const pt3 = allPointsExceptLast[i + 2];
     if (pt2 !== false && pt2) {
       ctx.strokeStyle = pt.color;
-      ctx.lineWidth = pt.brushSize + 0.5;
+      ctx.lineWidth = pt.brushSize + 0.55;
       ctx.beginPath();
       ctx.moveTo(pt.x, pt.y);
       ctx.lineTo(pt2.x, pt2.y);

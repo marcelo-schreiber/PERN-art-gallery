@@ -1,17 +1,19 @@
 const express = require('express');
 const pool = require('./db.js');
-const cors = require('cors');
 const app = express();
 const path = require('path');
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
+
 if (process.env.NODE_ENV === 'production') {
   // serve static content
   app.use(express.static(path.join(__dirname, '/Frontend/build')));
 } else {
+  const cors = require('cors');
   app.use(cors());
 }
+
 app.get('/gallery', async (req, res) => {
   try {
     const data = await pool.query('SELECT * FROM arts ORDER BY id DESC LIMIT 63');

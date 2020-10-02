@@ -158,7 +158,7 @@ function App() {
               }
               enabling={lastPath.length}
             />
-            <p>Brush size: {brushSize / 5}</p>
+            <p>Brush size: {Math.round(brushSize / 5)}</p>
             <button onClick={() => brushSize < 15 && setBrushSize(brushSize + 5)}>
               +
             </button>
