@@ -2,9 +2,11 @@ const express = require('express');
 const pool = require('./db.js');
 const app = express();
 const path = require('path');
+const compression = require('compression');
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
+app.use(compression());
 
 if (process.env.NODE_ENV === 'production') {
   // serve static content
