@@ -32,7 +32,12 @@ h1 {
 .logo {
   margin: 0.5rem;
   width: 7.5rem;
-  margin-left: 4.75rem;
+  margin-left: 4.85rem;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 form button {
@@ -55,6 +60,7 @@ form button:hover {
   touch-action: none;
   margin-left: 0.5rem;
   cursor: crosshair;
+  border: 4px solid #ffbd59;
 }
 
 .paint {

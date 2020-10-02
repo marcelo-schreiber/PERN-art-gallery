@@ -8,20 +8,20 @@ import Canvas from './components/Canvas';
 import UndoButton from './components/UndoButton';
 import Title from './components/Title';
 
+import './static/styles.css';
+
 // utils
 import { undo } from './utils/handleUndo';
-
-// style
-import './styles.css';
 
 function App() {
   //refs
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
 
-  //states
+  // brush states
   const [color, setColor] = useState('#000000');
   const [isDrawing, setIsDrawing] = useState(false);
+  const [brushSize, setBrushSize] = useState(5);
 
   // ctrl + z states
   const [path, setPath] = useState([]);
@@ -37,7 +37,7 @@ function App() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.lineCap = 'round';
     ctx.strokeStyle = 'black';
-    ctx.lineWidth = 4;
+    ctx.lineWidth = 5;
     contextRef.current = ctx;
   }, []);
 
@@ -51,12 +51,16 @@ function App() {
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
+    const ctx = contextRef.current;
 
-    setLastPath([{ x: offsetX, y: offsetY, color: color }]);
-    contextRef.current.strokeStyle = color;
-    contextRef.current.beginPath();
-    contextRef.current.moveTo(offsetX, offsetY);
+    // get paths
     setIsDrawing(true);
+    setPath([...path, { x: offsetX, y: offsetY }]);
+    setLastPath([{ x: offsetX, y: offsetY, color: color, brushSize: brushSize }]);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = brushSize;
+    ctx.beginPath();
+    ctx.moveTo(offsetX, offsetY);
   };
 
   const endDrawingBoth = () => {
@@ -66,15 +70,32 @@ function App() {
   };
 
   const draw = ({ nativeEvent }) => {
+    const canvas = canvasRef.current;
     if (!isDrawing) {
       return;
     }
     const { offsetX, offsetY } = nativeEvent;
-    if (!(offsetX < 247 && offsetX > 5 && offsetY > 4 && offsetY < 247)) {
-      endDrawingBoth();
+    if (
+      offsetX > canvas.width - 6 ||
+      offsetY > canvas.height - 6 ||
+      offsetX < 6 ||
+      offsetY < 6
+    ) {
+      setIsDrawing(false);
+      // get paths
+      setPath([...path, false]);
+      contextRef.current.closePath();
+      return;
     }
-    setLastPath([...lastPath, { x: offsetX, y: offsetY, color: color }]);
-    setPath([...path, { x: offsetX, y: offsetY, color: color }]);
+    // get paths
+    setLastPath([
+      ...lastPath,
+      { x: offsetX, y: offsetY, color: color, brushSize: brushSize },
+    ]);
+    setPath([
+      ...path,
+      { x: offsetX, y: offsetY, color: color, brushSize: brushSize },
+    ]);
     contextRef.current.lineTo(offsetX, offsetY);
     contextRef.current.stroke();
   };
@@ -83,10 +104,13 @@ function App() {
     const ctx = contextRef.current;
     const { posx, posy } = getTouchPos(canvasRef.current, e);
     ctx.strokeStyle = color;
+    ctx.lineWidth = brushSize;
+    // get paths
+    setPath([...path, { x: posx, y: posy, color: color, brushSize: brushSize }]);
+    setLastPath([{ x: posx, y: posy, color: color, brushSize: brushSize }]);
     ctx.beginPath();
     ctx.moveTo(posx, posy);
     setIsDrawing(true);
-    setLastPath([{ x: posx, y: posy, color: color }]);
   };
 
   const drawMobile = (e) => {
@@ -99,8 +123,11 @@ function App() {
     ctx.lineTo(posx, posy);
     ctx.stroke();
 
-    setLastPath([...lastPath, { x: posx, y: posy, color: color }]);
-    setPath([...path, { x: posx, y: posy, color: color }]);
+    setLastPath([
+      ...lastPath,
+      { x: posx, y: posy, color: color, brushSize: brushSize },
+    ]);
+    setPath([...path, { x: posx, y: posy, color: color, brushSize: brushSize }]);
   };
 
   return (
@@ -117,7 +144,7 @@ function App() {
             canvasRef={canvasRef}
           />
           <div>
-            <Colors color={color} setColor={setColor} />
+            <Colors color={color} setColor={setColor} context={contextRef} />
             <UndoButton
               action={() =>
                 undo(
@@ -131,9 +158,16 @@ function App() {
               }
               enabling={lastPath.length}
             />
+            <p>Brush size: {brushSize / 5}</p>
+            <button onClick={() => brushSize < 15 && setBrushSize(brushSize + 5)}>
+              +
+            </button>
+            <button onClick={() => brushSize > 5 && setBrushSize(brushSize - 5)}>
+              -
+            </button>
           </div>
         </div>
-        <AddImage canvas={canvasRef} context={contextRef} color={color} />
+        <AddImage canvas={canvasRef} color={color} context={contextRef} />
       </div>
       <Gallery />
     </>

@@ -11,7 +11,6 @@ function Canvas({
   return (
     <canvas
       id="canv"
-      style={{ border: '1px solid black' }}
       onMouseDown={startDrawing}
       onMouseMove={draw}
       onMouseUp={endDrawing}

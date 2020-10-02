@@ -5,11 +5,12 @@ const app = express();
 const path = require('path');
 const port = process.env.PORT || 8080;
 
-app.use(cors());
 app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
   // serve static content
   app.use(express.static(path.join(__dirname, '/Frontend/build')));
+} else {
+  app.use(cors());
 }
 app.get('/gallery', async (req, res) => {
   try {
