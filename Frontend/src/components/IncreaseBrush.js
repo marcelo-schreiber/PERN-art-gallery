@@ -5,7 +5,7 @@ function IncreaseBrush({ brushSize, setBrushSize }) {
     <button
       onClick={() => brushSize < 15 && setBrushSize(brushSize + 5)}
       className="add">
-      <i class="fas fa-plus-square fa-2x"></i>
+      <i className="fas fa-plus-square fa-2x"></i>
     </button>
   );
 }

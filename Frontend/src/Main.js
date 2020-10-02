@@ -14,6 +14,7 @@ import './static/styles.css';
 import { undo } from './utils/handleUndo';
 import IncreaseBrush from './components/IncreaseBrush';
 import DecreaseBrush from './components/DecreaseBrush';
+import BrushText from './components/BrushText';
 
 function App() {
   //refs
@@ -57,7 +58,10 @@ function App() {
 
     // get paths
     setIsDrawing(true);
-    setPath([...path, { x: offsetX, y: offsetY }]);
+    setPath([
+      ...path,
+      { x: offsetX, y: offsetY, color: color, brushSize: brushSize },
+    ]);
     setLastPath([{ x: offsetX, y: offsetY, color: color, brushSize: brushSize }]);
     ctx.strokeStyle = color;
     ctx.lineWidth = brushSize;
@@ -83,6 +87,7 @@ function App() {
       offsetX < 6 ||
       offsetY < 6
     ) {
+      console.log(offsetX);
       setIsDrawing(false);
       // get paths
       setPath([...path, false]);
@@ -160,7 +165,7 @@ function App() {
               }
               enabling={lastPath.length}
             />
-            <p>Brush size: {Math.round(brushSize / 5)} (1-3)</p>
+            <BrushText brushSize={brushSize} />
             <IncreaseBrush brushSize={brushSize} setBrushSize={setBrushSize} />
             <DecreaseBrush brushSize={brushSize} setBrushSize={setBrushSize} />
           </div>

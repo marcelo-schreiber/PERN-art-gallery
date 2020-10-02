@@ -5,7 +5,7 @@ function DecreaseBrush({ brushSize, setBrushSize }) {
     <button
       onClick={() => brushSize > 5 && setBrushSize(brushSize - 5)}
       className="minus">
-      <i class="fas fa-minus-square fa-2x"></i>
+      <i className="fas fa-minus-square fa-2x"></i>
     </button>
   );
 }
