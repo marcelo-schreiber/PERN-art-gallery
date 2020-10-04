@@ -37,6 +37,7 @@ function App() {
 
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = 'white';
+    ctx.lineJoin = "round";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.lineCap = 'round';
     ctx.strokeStyle = 'black';
