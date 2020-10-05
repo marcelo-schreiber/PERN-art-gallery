@@ -29,4 +29,4 @@ And a rest API in http://t1gart.herokuapp.com/gallery
 
 ### `npm start`
 
-### Your machine should be hosting an example in your localhost in port 3000 and a restAPI in port 8080.
+### Your machine should be hosting an example in http://localhost:3000 and a restAPI in http://localhost:8080.
