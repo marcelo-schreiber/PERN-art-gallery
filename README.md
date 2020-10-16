@@ -33,7 +33,6 @@
 # Prerequisites
 - Make sure to download <a href="https://nodejs.org/en/" target="_blank">Nodejs</a> and <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>
 
-## How to run on your machine
 ### Installation
 - Create a database in your postgreSQL terminal and
   a .env file in the root directory with the content
