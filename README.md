@@ -20,13 +20,6 @@
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
-## Table of Contents
-
-  * [Installation](#installation)
-  * [Prerequisites](#prerequisites)
-  * [Contact](#contact)
-
 ### Prerequisites
 
 - Make sure to download <a href="https://nodejs.org/en/" target="_blank">Nodejs</a> and <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>
