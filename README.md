@@ -58,8 +58,7 @@
 ### Your machine should be hosting an example in http://localhost:3000 and a restAPI in http://localhost:8080.
 
 <!-- CONTACT -->
-<br />
-## Contact
+# Contact
 
 - Discord: [Losaeg#1619] 
 - Email: marcelorissette15@gmail.com
