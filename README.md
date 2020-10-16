@@ -9,7 +9,7 @@
   <h3 align="center">T1Gart | A public Art Gallery</h3>
 
   <p align="center">
-    A simple website hosted in http://t1gart.herokuapp.com/ made with the PERN stack (PostgreSQL, Express, React, NodeJs).
+    A website sample is hosted in http://t1gart.herokuapp.com/ made with the PERN stack (PostgreSQL, Express, React, NodeJs).
     <br />
     <br />
     <a href="http://t1gart.herokuapp.com">View Demo</a>
@@ -28,9 +28,11 @@
   * [Contact](#contact)
 
 ### Prerequisites
+
 - Make sure to download <a href="https://nodejs.org/en/" target="_blank">Nodejs</a> and <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>
 
 ### Installation
+
 - Create a database in your postgreSQL terminal and
   a .env file in the root directory with the content
 
