@@ -1,5 +1,6 @@
 # T1Gart | Gallery App
 
+<!-- about -->
 ### About
 <p align="center">
   <a href="http://t1gart.herokuapp.com/">
@@ -42,7 +43,7 @@
 <p>PG_HOST=host</p>
 <p>PG_PORT=port</p>
 <p>PG_DATABASE=name_of_database</p>
-
+<br />
 - Install all dependencies using:
 
 ### `npm install`
