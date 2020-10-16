@@ -1,6 +1,6 @@
 # T1Gart | Gallery App
 
-### About the Project
+### About
 <p align="center">
   <a href="http://t1gart.herokuapp.com/">
     <img src="http://t1gart.herokuapp.com/static/media/logo192.8dc61a89.png" style="margin: 0 auto;" />
