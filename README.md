@@ -1,6 +1,6 @@
 # T1Gart | Gallery App
 
-## About the Project
+### About the Project
 <p align="center">
   <a href="http://t1gart.herokuapp.com/">
     <img src="http://t1gart.herokuapp.com/static/media/logo192.8dc61a89.png" style="margin: 0 auto;" />
@@ -23,16 +23,16 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-  * [About](#prerequisites)
+  * [About](#about)
   * [Installation](#installation)
   * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
   * [Contact](#contact)
 
-## How to run on your machine
-
+# Prerequisites
 - Make sure to download <a href="https://nodejs.org/en/" target="_blank">Nodejs</a> and <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>
 
+## How to run on your machine
+### Installation
 - Create a database in your postgreSQL terminal and
   a .env file in the root directory with the content
 
@@ -55,3 +55,8 @@
 ### `npm start`
 
 ### Your machine should be hosting an example in http://localhost:3000 and a restAPI in http://localhost:8080.
+
+<!-- CONTACT -->
+## Contact
+
+marcelo-schreiber - Discord: [Losaeg#1619] - Email: marcelorissette15@gmail.com
