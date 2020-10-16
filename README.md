@@ -1,7 +1,6 @@
 # T1Gart | Gallery App
 
 <!-- about -->
-### About
 <p align="center">
   <a href="http://t1gart.herokuapp.com/">
     <img src="http://t1gart.herokuapp.com/static/media/logo192.8dc61a89.png" style="margin: 0 auto;" />
@@ -24,7 +23,6 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-  * [About](#about)
   * [Installation](#installation)
   * [Prerequisites](#prerequisites)
   * [Contact](#contact)
