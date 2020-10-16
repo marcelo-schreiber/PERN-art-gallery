@@ -29,8 +29,7 @@
   * [Prerequisites](#prerequisites)
   * [Contact](#contact)
 
-<br />
-# Prerequisites
+### Prerequisites
 - Make sure to download <a href="https://nodejs.org/en/" target="_blank">Nodejs</a> and <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>
 
 ### Installation
